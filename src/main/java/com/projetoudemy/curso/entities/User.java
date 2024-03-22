@@ -1,5 +1,6 @@
 package com.projetoudemy.curso.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -25,6 +26,7 @@ public class User implements Serializable {
     @Column
     private String password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
