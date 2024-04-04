@@ -3,7 +3,9 @@ package com.projetoudemy.curso.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_categoria")
@@ -15,6 +17,8 @@ public class Categoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Transient
+    private Set<Produto> produtos = new HashSet<>();
 
     public Categoria() {
     }
@@ -36,6 +40,10 @@ public class Categoria implements Serializable {
         return name;
     }
 
+    public Set<Produto> getProdutos() {
+        return produtos;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -52,4 +60,6 @@ public class Categoria implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 }

@@ -2,10 +2,12 @@ package com.projetoudemy.curso.config;
 
 import com.projetoudemy.curso.entities.Categoria;
 import com.projetoudemy.curso.entities.Pedido;
+import com.projetoudemy.curso.entities.Produto;
 import com.projetoudemy.curso.entities.User;
 import com.projetoudemy.curso.entities.enums.PedidoStatus;
 import com.projetoudemy.curso.repository.CategoriaRepository;
 import com.projetoudemy.curso.repository.PedidoRepository;
+import com.projetoudemy.curso.repository.ProdutoRepository;
 import com.projetoudemy.curso.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -25,6 +27,8 @@ public class TestConfig implements CommandLineRunner {
     private PedidoRepository pedidoRepository;
     @Autowired
     private CategoriaRepository categoriaRepository;
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -32,7 +36,14 @@ public class TestConfig implements CommandLineRunner {
         Categoria cat2 = new Categoria(null, "Books");
         Categoria cat3 = new Categoria(null, "Computers");
 
+        Produto pr1 = new Produto(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Produto pr2 = new Produto(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Produto pr3 = new Produto(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Produto pr4 = new Produto(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Produto pr5 = new Produto(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
         categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        produtoRepository.saveAll(Arrays.asList(pr1, pr2, pr3, pr4, pr5));
 
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
