@@ -2,6 +2,7 @@ package com.projetoudemy.curso.config;
 
 import com.projetoudemy.curso.entities.Pedido;
 import com.projetoudemy.curso.entities.User;
+import com.projetoudemy.curso.entities.enums.PedidoStatus;
 import com.projetoudemy.curso.repository.PedidoRepository;
 import com.projetoudemy.curso.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,9 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2));
 
-        Pedido p1 = new Pedido(null, Instant.parse("2019-06-20T19:53:07Z"), u1);
-        Pedido p2 = new Pedido(null, Instant.parse("2019-07-21T03:42:10Z"), u2);
-        Pedido p3 = new Pedido(null, Instant.parse("2019-07-22T15:21:22Z"), u1);
+        Pedido p1 = new Pedido(null, Instant.parse("2019-06-20T19:53:07Z"), PedidoStatus.PAGO, u1);
+        Pedido p2 = new Pedido(null, Instant.parse("2019-07-21T03:42:10Z"), PedidoStatus.AGUARDANDO_PAGAMENTO, u2);
+        Pedido p3 = new Pedido(null, Instant.parse("2019-07-22T15:21:22Z"), PedidoStatus.AGUARDANDO_PAGAMENTO, u1);
 
         pedidoRepository.saveAll(Arrays.asList(p1, p2, p3));
     }
