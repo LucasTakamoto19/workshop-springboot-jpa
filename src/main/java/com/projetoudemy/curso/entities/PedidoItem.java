@@ -1,5 +1,6 @@
 package com.projetoudemy.curso.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projetoudemy.curso.entities.pk.PedidoItemPK;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -15,9 +16,13 @@ public class PedidoItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private PedidoItemPK id;
+    private PedidoItemPK id = new PedidoItemPK();
     private Integer quantidade;
     private Double preco;
+
+    public PedidoItem(){
+
+    }
 
     public PedidoItem(Pedido pedido, Produto produto, Integer quantidade, Double preco) {
         id.setPedido(pedido);
@@ -26,6 +31,8 @@ public class PedidoItem implements Serializable {
         this.preco = preco;
     }
 
+    // GetPedido chamando o pedido associado ao item de pedido
+    @JsonIgnore
     public Pedido getPedido(){
         return id.getPedido();
     }

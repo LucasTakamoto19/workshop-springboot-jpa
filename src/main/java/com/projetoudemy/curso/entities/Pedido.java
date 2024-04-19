@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "db_pedidos")
@@ -29,6 +31,9 @@ public class Pedido implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private User cliente;
+
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<PedidoItem> itens = new HashSet<>();
 
     public Pedido() {
     }
@@ -72,6 +77,14 @@ public class Pedido implements Serializable {
 
     public void setCliente(User cliente) {
         this.cliente = cliente;
+    }
+
+    public void setItens(Set<PedidoItem> itens) {
+        this.itens = itens;
+    }
+
+    public Set<PedidoItem>getItens(){
+        return itens;
     }
 
     @Override
