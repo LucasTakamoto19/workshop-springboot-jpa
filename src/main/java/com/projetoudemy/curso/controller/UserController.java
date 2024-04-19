@@ -45,4 +45,10 @@ public class UserController {
         service.excluir(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> atualizar(@PathVariable Long id, @RequestBody User obj){
+        obj = service.atualizar(id, obj);
+        return ResponseEntity.ok().body(obj);
+    }
 }

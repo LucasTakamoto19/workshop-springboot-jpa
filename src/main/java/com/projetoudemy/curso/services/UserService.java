@@ -30,4 +30,16 @@ public class UserService {
     public void excluir(Long id){
         userRepository.deleteById(id);
     }
+
+    public User atualizar(Long id, User obj){
+        User entity = userRepository.getReferenceById(id);
+        atualizarDados(entity, obj);
+        return userRepository.save(entity);
+    }
+
+    private void atualizarDados(User entity, User obj) {
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
+    }
 }
