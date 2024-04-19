@@ -65,6 +65,10 @@ public class PedidoItem implements Serializable {
         this.preco = preco;
     }
 
+    public Double getSubTotal(){
+        return preco * quantidade;
+    }
+
 
 
     @Override
